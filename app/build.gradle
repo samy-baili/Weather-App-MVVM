@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+android {
+    compileSdkVersion 28
+    flavorDimensions "default"
+
+    defaultConfig {
+        applicationId "android.apps.hbmsu.com.weatherapp"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            signingConfig debug.signingConfig
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        europeWeatherFlavor {
+            buildConfigField 'String', 'CITIES_ID_LIST', '"6455259,6454924,2643743,2859887,2648370,6447142,3169070,6359304,6356055"'
+        }
+
+        asiaWeatherFlavor {
+            buildConfigField 'String', 'CITIES_ID_LIST', '"292223,1819729,1816670,1609350,1151254,290030,5178813,5601538,745044"'
+        }
+
+        americaWeatherFlavor {
+            buildConfigField 'String', 'CITIES_ID_LIST', '"3451189,5815135,5128638,5368381,6167865,3996063,3688689,4905006,6173331"'
+        }
+    }
+}
+
+ext {
+    androidxVersion = '1.0.0'
+    rxVersion = '2.4.0'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidxVersion"
+    implementation "androidx.cardview:cardview:$androidxVersion"
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation "com.squareup.retrofit2:retrofit:$rxVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rxVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxVersion"
+
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

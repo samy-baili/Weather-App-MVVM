@@ -1,0 +1,14 @@
+# WheatherApp MVVM
+Developing a simple Weather app, linked to OpenWeatherMap API.
+
+
+##Informations:
+
+• The project has been created in MVVM.
+• The Weather and alerts are updated every 60 seconds, using a service.
+• Possibility to build different variants (Europe, America, Asia).
+
+
+##To do:
+• Unit testing
+• Local storage
