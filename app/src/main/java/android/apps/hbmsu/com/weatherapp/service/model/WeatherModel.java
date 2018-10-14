@@ -1,5 +1,6 @@
 package android.apps.hbmsu.com.weatherapp.service.model;
 
+@SuppressWarnings("unused")
 public class WeatherModel {
 
     public Coord coord;
